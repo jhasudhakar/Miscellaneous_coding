@@ -35,6 +35,7 @@ vector<int> shortestReach(int n, vector<vector<int> > edges, int s)
 		int end = edges[i][1];
 		int weight = edges[i][2];
 		graph[begin].push_back(src(weight, end));
+		graph[end].push_back(src(weight, begin));
 	}
 
 	int* dist = new int[n+1];
@@ -48,12 +49,12 @@ vector<int> shortestReach(int n, vector<vector<int> > edges, int s)
 	{
 		pq.push(node(i, dist[i]));
 	}
-	dist[s] = MAX_DIST;
+	//dist[s] = MAX_DIST;
 
 	while(pq.size())
 	{
 		node cur_node = pq.top(); pq.pop();
-		if(cur_node.len >= dist[cur_node.n])
+		if(cur_node.len > dist[cur_node.n])
 			continue;
 		for(int i=0; i<graph[cur_node.n].size(); i++)
 		{
