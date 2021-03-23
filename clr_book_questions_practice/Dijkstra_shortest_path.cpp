@@ -48,7 +48,7 @@ vector<int> shortestReach(int n, vector<vector<int> > edges, int s)
 	{
 		pq.push(node(i, dist[i]));
 	}
-	//dist[s] = MAX_DIST;
+	dist[s] = MAX_DIST;
 
 	while(pq.size())
 	{
